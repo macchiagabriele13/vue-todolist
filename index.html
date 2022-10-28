@@ -20,12 +20,12 @@
         <div class="container">
             <div class="generator">
                 <h3 class="my-4">Ecco cosa hai da fare</h3>
-                <input type="text" placeholder="Scrivi la tua commissione qui">
-                <button>Genera</button>
+                <input type="text" v-model="newTask.text" placeholder="Scrivi la tua commissione qui">
+                <button @click="addTask">Genera</button>
             </div>
             <div class="main_tasks">
                 <ul>
-                    <li v-for="task in tasks" v-if="task.done === true ? ">{{task.text}}</li>
+                    <li v-for="task in tasks" >{{task.text}}</li>
                 </ul>
 
             </div>

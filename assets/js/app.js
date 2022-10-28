@@ -22,6 +22,10 @@ const { createApp } = Vue
 createApp({
   data() {
     return {
+    newTask: {
+        text:'',
+        done: false
+    },
       tasks: [
         {
             text:'Mangiare',
@@ -36,6 +40,14 @@ createApp({
             done: false
         },
       ]
+    }
+  },
+  methods: {
+    addTask(){
+        console.log('Hai cliccato qui');
+        console.log(this.newTask);
+        
+        this.tasks.unshift(this.newTask)
     }
   }
 }).mount('#app')
