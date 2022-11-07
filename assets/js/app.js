@@ -47,7 +47,12 @@ createApp({
         console.log('Hai cliccato qui');
         console.log(this.newTask);
         
-        this.tasks.unshift(this.newTask)
+        const newTask = {
+          ...this.newTask
+        }
+
+        this.tasks.unshift(newTask)
+        this.newTask.text = ''
     }
   }
 }).mount('#app')
