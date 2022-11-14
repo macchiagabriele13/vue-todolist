@@ -43,16 +43,33 @@ createApp({
     }
   },
   methods: {
-    addTask(){
-        console.log('Hai cliccato qui');
-        console.log(this.newTask);
-        
-        const newTask = {
-          ...this.newTask
-        }
+    removeTask(index) {
+      //console.log("Ho cliccato sulla X", index);
+      this.tasks.splice(index, 1);
+    },
 
-        this.tasks.unshift(newTask)
-        this.newTask.text = ''
-    }
-  }
-}).mount('#app')
+    addTask() {
+      //console.log("ho cliccato");
+      console.log(this.newTask.text.length);
+
+      if (this.newTask.text.length < 4 || this.newTask.text.trim().length === 0) {
+        this.warning = true;
+      } else {
+        this.warning = false;
+        this.tasks.unshift(this.newTask);
+        //console.log(this.tasks);
+        //manca come pulire l'input text
+        this.newTask = {
+          text: "",
+          done: false,
+        };
+      }
+    },
+
+    barred(index) {
+      //console.log("cliccato sul testo di" ,index);
+      //console.log(this.tasks[index].done);
+      this.tasks[index].done = !this.tasks[index].done;
+    },
+  },
+}).mount("#app");

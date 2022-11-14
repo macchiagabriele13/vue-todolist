@@ -16,20 +16,38 @@
 </head>
 
 <body>
-    <div id="app">
-        <div class="container">
-            <div class="generator">
-                <h3 class="my-4">Ecco cosa hai da fare</h3>
-                <input type="text" v-model="newTask.text" placeholder="Scrivi la tua commissione qui">
-                <button @click="addTask">Genera</button>
-            </div>
-            <div class="main_tasks">
-                <ul>
-                    <li v-for="task in tasks" >{{task.text}}</li>
-                </ul>
 
+        <div class="container mt-5">
+            <div id="app">
+              <div class="task_list">
+                <div class="addTask">
+                  <h3>Nuova Attività</h3>
+                  <input type="text" v-model="newTask.text" @keyup.enter="addTask" />
+                  <button class="btn btn-primary btn-sm ms-3" @click="addTask">Aggiungi Attività</button>
+      
+                  <div class="text-danger" v-show="warning">
+                    Attenzione! L'attività inserita deve avere almeno 4 caratteri
+                  </div>
+                </div>
+      
+                <h3>Lista di attività da svolgere:</h3>
+                <ul v-if="tasks.length !== 0">
+                  <li
+                    v-for="(task, index) in tasks"
+                    :class="task.done === true ? 'done' : ''"
+                    @click.stop="barred(index)"
+                  >
+                    {{task.text}}
+                    <i
+                      class="fa-solid fa-times-circle"
+                      @click.stop="removeTask(index)"
+                    ></i>
+                  </li>
+                </ul>
+                <p v-else>Bravo, hai terminato tutte le cose da fare!</p>
+              </div>
             </div>
-        </div>
+          </div>
 
 
 
